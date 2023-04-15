@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "lem.security.jwt.issuer",
+      "type": "java.lang.String",
+      "description": "Description for lem.security.jwt.issuer."
+    },
+    {
+      "name": "lem.security.jwt.expiration-time",
+      "type": "java.lang.String",
+      "description": "Description for lem.security.jwt.expiration-time."
+    }
+  ] }
