@@ -22,7 +22,7 @@ public class LemUserDetailsService implements UserDetailsService
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
         HttpServletRequest httpServletRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        LemUser lemUser = userRepository.findUserByUsername(username);
+        LemUser lemUser = userRepository.findByUsername(username);
         if (lemUser == null)
         {
             throw new UsernameNotFoundException("User does not exist!");

@@ -6,6 +6,7 @@ node
 
 # Build
 target/
+*.db
 
 # Logs
 *.log

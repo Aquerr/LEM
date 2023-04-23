@@ -3,3 +3,5 @@ CREATE TABLE lem_user (
     username VARCHAR(36) NOT NULL,
     password VARCHAR(255) NOT NULL
 );
+
+CREATE SEQUENCE lem_user_seq AS BIGINT START WITH 1 INCREMENT BY 5;

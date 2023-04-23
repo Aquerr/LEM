@@ -1,13 +1,36 @@
 package io.github.aquerr.lem.domain.model;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
+@Table(name = "lem_user")
 public final class LemUser
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lem_user_generator")
+    @SequenceGenerator(name = "lem_user_generator", sequenceName = "lem_user_seq", allocationSize = 5)
+    @Column(name = "id", unique = true, nullable = false)
     private Long id;
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
+    @Column(name = "password", nullable = false)
     private String password;
+
+    @ElementCollection
+    @CollectionTable(name = "lem_user_authority", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "authority")
     private Set<String> authorities;
 
     public LemUser()
