@@ -7,6 +7,10 @@ export class MaskService {
 
   constructor() { }
 
+  show() {
+
+  }
+
   hide() {
 
   }

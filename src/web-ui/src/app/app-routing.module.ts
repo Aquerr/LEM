@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {LoginComponent} from "./login/login.component";
-import {HomeComponent} from "./home/home.component";
-import {ProcessesComponent} from "./processes/processes.component";
-import {SettingsComponent} from "./settings/settings.component";
-import {LogsComponent} from "./logs/logs.component";
+import {LoginComponent} from "./tabs/login/login.component";
+import {HomeComponent} from "./tabs/home/home.component";
+import {ProcessesComponent} from "./tabs/processes/processes.component";
+import {SettingsComponent} from "./tabs/settings/settings.component";
+import {LogsComponent} from "./tabs/logs/logs.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},

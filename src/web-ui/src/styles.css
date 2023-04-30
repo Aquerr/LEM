@@ -70,3 +70,14 @@ body {
   margin-left: 1rem;
   width: 100%;
 }
+
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.password-input {
+  border-radius: 0px !important;
+}
