@@ -1,0 +1,6 @@
+<div class="available-logs-table">
+  <div class="log-type-card" *ngFor="let logType of availableLogTypes" [routerLink]="['/logs', logType]">
+    <i class="pi pi-list"></i>
+    <label>{{logType}}</label>
+  </div>
+</div>

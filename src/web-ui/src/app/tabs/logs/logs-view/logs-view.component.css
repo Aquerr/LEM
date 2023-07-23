@@ -1,0 +1,30 @@
+.logs-view-container {
+  width: 100%;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.logs-list {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  border: 1px solid #666666;
+}
+
+.log:first-child {
+  height: 2rem;
+  border: 1px solid #666666;
+}
+
+.log:not(:first-child) {
+  height: 2rem;
+  margin-top: 1rem;
+  border: 1px solid #666666;
+}
+
+.action-buttons {
+  margin-top: 1rem;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}

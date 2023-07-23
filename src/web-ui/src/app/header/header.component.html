@@ -5,4 +5,7 @@
   <div class="header-item">
     <lem-header-login></lem-header-login>
   </div>
+  <div class="header-item" *ngIf="isAuthenticated()">
+    <lem-header-logout></lem-header-logout>
+  </div>
 </div>

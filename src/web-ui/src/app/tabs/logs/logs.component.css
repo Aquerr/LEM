@@ -1,0 +1,23 @@
+.available-logs-table {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.log-type-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 15rem;
+  height: 9rem;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  box-shadow: #393a34 1px 1px 1px 1px;
+  cursor: pointer;
+}
+
+.log-type-card:hover {
+  box-shadow: #111111 4px 4px 20px 10px;
+}

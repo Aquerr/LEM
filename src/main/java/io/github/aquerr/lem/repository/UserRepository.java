@@ -1,6 +1,6 @@
 package io.github.aquerr.lem.repository;
 
-import io.github.aquerr.lem.domain.model.LemUser;
+import io.github.aquerr.lem.domain.user.model.LemUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<LemUser, Long>

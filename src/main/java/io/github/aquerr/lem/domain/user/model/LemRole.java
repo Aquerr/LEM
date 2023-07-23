@@ -1,4 +1,4 @@
-package io.github.aquerr.lem.domain.model;
+package io.github.aquerr.lem.domain.user.model;
 
 import java.util.Set;
 
@@ -24,7 +24,7 @@ public enum LemRole
 
     private final Set<LemAuthority> authorities;
 
-    private LemRole(Set<LemAuthority> authorities)
+    LemRole(Set<LemAuthority> authorities)
     {
         this.authorities = authorities;
     }

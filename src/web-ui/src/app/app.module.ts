@@ -22,6 +22,10 @@ import {ButtonModule} from "primeng/button";
 import {RippleModule} from "primeng/ripple";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {ToastModule} from "primeng/toast";
+import {MessageService} from "primeng/api";
+import { HeaderLogoutComponent } from './header/header-logout/header-logout.component';
+import { LogsViewComponent } from './tabs/logs/logs-view/logs-view.component';
 
 @NgModule({
   declarations: [
@@ -34,23 +38,27 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
     LogsComponent,
     HeaderComponent,
     HeaderLoginComponent,
-    HeaderTimeComponent
+    HeaderTimeComponent,
+    HeaderLogoutComponent,
+    LogsViewComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ListboxModule,
-    CommonModule,
-    InputTextModule,
-    PasswordModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    ButtonModule,
-    RippleModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ListboxModule,
+        CommonModule,
+        InputTextModule,
+        PasswordModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        ButtonModule,
+        RippleModule,
+        ToastModule
+    ],
   providers: [DatePipe,
-    {provide: HTTP_INTERCEPTORS, useClass: LemHttpInterceptor, multi: true}],
+    {provide: HTTP_INTERCEPTORS, useClass: LemHttpInterceptor, multi: true},
+    MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

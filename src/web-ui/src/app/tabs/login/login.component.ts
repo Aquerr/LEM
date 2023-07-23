@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../service/auth.service";
 import {MaskService} from "../../service/mask.service";
 import {Router} from "@angular/router";
-import {LoginReuqest} from "../../model/jwt.model";
+import {LoginRequest} from "../../model/jwt.model";
 
 @Component({
   selector: 'app-login',
@@ -30,7 +30,7 @@ export class LoginComponent {
 
     const formData = this.signInForm.value;
 
-    let signInRequest: LoginReuqest = {
+    let signInRequest: LoginRequest = {
       username: formData.username === undefined ? '' : formData.username,
       password: formData.password === undefined ? '' : formData.password
     };

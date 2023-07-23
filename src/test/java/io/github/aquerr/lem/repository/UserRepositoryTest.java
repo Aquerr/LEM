@@ -1,6 +1,6 @@
 package io.github.aquerr.lem.repository;
 
-import io.github.aquerr.lem.domain.model.LemUser;
+import io.github.aquerr.lem.domain.user.model.LemUser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

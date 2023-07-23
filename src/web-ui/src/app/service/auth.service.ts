@@ -1,59 +1,84 @@
 import {Injectable} from '@angular/core';
 import {map, Observable} from "rxjs";
-import {CanActivateFn, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {JwtTokenResponse} from "../model/jwt.model";
+import {Authority} from "../model/authority.model";
+import {NotificationService} from "./notification.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  // canActivateAuthenticated: CanActivateFn = (route, state) => {
-  //   return inject(AuthService).canActivate();
-  // }
+  private readonly API_AUTH_URL = `${environment.apiBaseUrl}/auth`;
+  private readonly API_MYSELF_URL = `${environment.apiBaseUrl}/auth/myself`;
+  private readonly API_INVALIDATE_URL = `${environment.apiBaseUrl}/auth/invalidate`;
 
   constructor(private router: Router,
-              private httpClient: HttpClient) { }
+              private httpClient: HttpClient,
+              private notificationService: NotificationService) { }
 
   authenticate(signInRequest: { password: string; username: string }): Observable<any> {
-    console.log(signInRequest);
-    console.log(environment.apiBaseUrl + '/auth');
-    return this.httpClient.post<JwtTokenResponse>(environment.apiBaseUrl + '/auth', signInRequest, {
+    return this.httpClient.post<JwtTokenResponse>(this.API_AUTH_URL, signInRequest, {
       observe: 'response'
     })
       .pipe(map(userData => {
         console.log(userData);
-        sessionStorage.setItem('username', userData.body?.username ? userData.body.username : '');
-        sessionStorage.setItem('auth-token', (userData.body?.jwt ? userData.body?.jwt : ''))
+        const jwtTokenResponse = userData.body;
+        sessionStorage.setItem('user', JSON.stringify(jwtTokenResponse));
         return userData;
       }));
   }
 
   isAuthenticated(): boolean {
-    let user = sessionStorage.getItem('username');
-    let token = sessionStorage.getItem('auth-token');
-    return !(user === null) && !(token === null);
+    return sessionStorage.getItem('user') !== null;
   }
 
   logout(): void {
-    //TODO: Contact the backend to invalidate old auth-token.
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('auth-token');
+    this.httpClient.post(this.API_INVALIDATE_URL, {}).subscribe();
+    sessionStorage.removeItem('user');
+    this.router.navigate(['home']);
   }
 
-  canActivate(): CanActivateFn {
-    return (route, state) => {
-      if (!this.isAuthenticated()) {
-        this.router.navigate(['login'])
-        return false;
-      }
-      return true;
-    };
+  canActivate(): boolean {
+    if (!this.isAuthenticated()) {
+      this.router.navigate(['login'])
+      return false;
+    }
+    return true;
   }
 
   getCurrentUser(): string | null {
-    return sessionStorage.getItem('username');
+    const user = sessionStorage.getItem('user');
+    if (user === null)
+      return null;
+    return (JSON.parse(user) as JwtTokenResponse).username;
+  }
+
+  getAuthToken(): string | null {
+    const user = sessionStorage.getItem('user');
+    if (user === null)
+      return null;
+    return (JSON.parse(user) as JwtTokenResponse).jwt;
+  }
+
+  hasAuthority(authority: Authority): boolean {
+    return this.getUserAuthorities().includes(authority);
+  }
+
+  checkAuthorityAndDisplayToast(authority: Authority) {
+    const hasAuthority = this.hasAuthority(authority);
+    if (!hasAuthority) {
+      this.notificationService.errorNotification("Access Denied", "You don't have enough permissions.");
+    }
+  }
+
+  getUserAuthorities(): Authority[] {
+    const user = sessionStorage.getItem('user');
+    if (user === null)
+      return [];
+    return (JSON.parse(user) as JwtTokenResponse).authorities;
   }
 }

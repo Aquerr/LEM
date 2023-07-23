@@ -1,4 +1,4 @@
-package io.github.aquerr.lem.domain.model;
+package io.github.aquerr.lem.domain.user.model;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;

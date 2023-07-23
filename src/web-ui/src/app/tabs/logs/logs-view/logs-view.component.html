@@ -1,0 +1,10 @@
+<div class="logs-view-container">
+  <div class="logs-list">
+    <div class="log" *ngFor="let log of logs">
+      {{log}}
+    </div>
+  </div>
+  <div class="action-buttons">
+    <p-button label="Load 10 more" styleClass="p-button-text p-button-info" (onClick)="loadMoreLogs()"></p-button>
+  </div>
+</div>
