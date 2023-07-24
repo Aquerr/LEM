@@ -33,8 +33,7 @@ public class AvailableLogsConfig
 
     private boolean isLogAvailable(UbuntuLogFile ubuntuLogFile)
     {
-        return true;
-//        File logFile = ubuntuLogFile.getFilePath().toFile();
-//        return logFile.exists() && logFile.canRead();
+        File logFile = ubuntuLogFile.getFilePath().toFile();
+        return logFile.exists() && logFile.canRead();
     }
 }

@@ -17,7 +17,7 @@ export class LogsViewComponent {
   constructor(private activatedRoute: ActivatedRoute, private logsService: LogsService) {
     this.logType = this.activatedRoute.snapshot.params['logType'];
     this.logsService.getLogs({logType: this.logType, startLine: this.startLine, lines: 10}).subscribe(response => {
-      this.logs = [...response.lines];
+      this.logs = [...this.logs, ...response.lines];
       this.startLine = response.startLine;
       this.totalLines = response.totalLines;
     });
@@ -27,7 +27,7 @@ export class LogsViewComponent {
     const moreToLoad = 10;
     this.startLine += 10;
     this.logsService.getLogs({logType: this.logType, startLine: this.startLine, lines: moreToLoad}).subscribe(response => {
-      this.logs = [...response.lines];
+      this.logs = [...this.logs, ...response.lines];
       this.startLine = response.startLine;
       this.totalLines = response.totalLines;
     });
