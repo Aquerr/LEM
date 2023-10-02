@@ -164,7 +164,7 @@
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
-                            <argument>run build</argument>
+                            <arguments>run build</arguments>
                         </configuration>
                     </execution>
                 </executions>

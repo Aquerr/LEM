@@ -34,14 +34,14 @@ public class WebSecurityConfig
                                                LemUserDetailsService lemUserDetailsService,
                                                JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception
         {
-
             httpSecurity.authorizeHttpRequests()
-                    .requestMatchers(PathRequest.toH2Console()).permitAll()
                     .requestMatchers("/api/v1/auth/**").permitAll()
                     .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                     .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                     .requestMatchers("/api/**").authenticated()
-                    .requestMatchers("/").permitAll()
+                    .requestMatchers("/public/**").authenticated()
+                    .requestMatchers("/static/**").authenticated()
+                    .requestMatchers("/*").permitAll()
                     .anyRequest().authenticated()
             .and()
             .userDetailsService(lemUserDetailsService)
