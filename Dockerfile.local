@@ -1,0 +1,13 @@
+FROM maven:3.9.4-eclipse-temurin-17 as builder
+
+COPY . .
+
+RUN mvn install -U -Dfrontend-plugin-skip=true
+
+FROM eclipse-temurin:17-jre as runner
+
+WORKDIR /app
+
+COPY --from=builder target/lem-0.0.1-SNAPSHOT.jar /app/
+
+CMD ["java", "-jar", "/app/lem-0.0.1-SNAPSHOT.jar"]

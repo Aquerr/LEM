@@ -21,9 +21,6 @@ export class LogsViewComponent {
       this.startLine = response.startLine;
       this.totalLines = response.totalLines;
     });
-    setInterval(() => {
-      this.loadMoreLogs();
-    }, 5000)
   }
 
   loadMoreLogs() {

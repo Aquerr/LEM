@@ -17,6 +17,7 @@
         <java.version>17</java.version>
         <node.version>v18.16.0</node.version>
         <npm.version>9.5.1</npm.version>
+        <frontend-plugin-skip>false</frontend-plugin-skip>
     </properties>
     <dependencies>
         <dependency>
@@ -169,6 +170,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <skip>${frontend-plugin-skip}</skip>
                     <nodeVersion>${node.version}</nodeVersion>
                     <npmVersion>${npm.version}</npmVersion>
                     <workingDirectory>src/web-ui</workingDirectory>

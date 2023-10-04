@@ -1,0 +1,28 @@
+# Builder
+FROM node:17.0.1 AS builder
+
+WORKDIR /lem-frontend
+
+COPY ./node_modules .
+COPY package*.json .
+COPY proxy.config.json .
+RUN npm install
+
+COPY . .
+
+# Runner
+FROM node:17.0.1 AS runner
+
+WORKDIR /lem-frontend
+
+COPY --from=builder /lem-frontend .
+
+RUN npm install -g @angular/cli@15
+
+ARG USERNAME=lem
+RUN useradd $USERNAME
+USER $USERNAME
+
+EXPOSE 4200
+
+CMD ["ng", "serve", "--host", "0.0.0.0"]

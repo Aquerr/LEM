@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  lem-backend:
+    container_name: LEM-BE
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    ports:
+      - "8086:8086"
+    environment:
+      - "SPRING_PROFILES_ACTIVE=local"
+
+  lem-frontend:
+    container_name: LEM-FE
+    build:
+      context: ./src/web-ui
+      dockerfile: Dockerfile.local
+    ports:
+      - "4200:4200"
+    volumes:
+      - /lem-frontend/node_modules
+      - ./src/web-ui:/lem-frontend
